@@ -8,17 +8,28 @@
 
 struct Parsed
 {
+    QString moduleName;
     QList<Variable> variables;
     QList<Constant> constants;
     QList<Block> blocks;
 
     Parsed(QList<Variable> variables,
            QList<Constant> constants,
-           QList<Block> blocks)
+           QList<Block> blocks,
+           QString moduleName = "")
     {
+        this->moduleName = moduleName;
         this->variables = variables;
         this->constants = constants;
         this->blocks = blocks;
+    }
+
+    Parsed()
+    {
+        this->moduleName = "";
+        this->variables = QList<Variable>();
+        this->constants = QList<Constant>();
+        this->blocks = QList<Block>();
     }
 };
 
