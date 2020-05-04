@@ -83,7 +83,8 @@ void MainWindow::addExistingModule()
 
         try
         {
-            Parsed parsed = ModuleParser::parse(Cryptography::xorDecrypt(stream.readAll(), "Roman"));
+            //Parsed parsed = ModuleParser::parse(Cryptography::xorDecrypt(stream.readAll(), "Roman"));
+            Parsed parsed = ModuleParser::parse(Cryptography::aesDecrypt(stream.readAll(), "RomanMalinkov"));
 
             parsed.moduleName = moduleName;
             Executor::askInput(parsed);
@@ -117,7 +118,8 @@ void MainWindow::deleteModule()
         {
             QTextStream out(&cryptModule);
 
-            out << Cryptography::xorEncrypt(stream.readAll(), "Roman");
+            //out << Cryptography::xorEncrypt(stream.readAll(), "Roman");
+            out << Cryptography::aesEncrypt(stream.readAll(), "RomanMalinkov");
         }
 
         cryptModule.close();

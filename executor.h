@@ -14,7 +14,7 @@ public:
     static void askInput(Parsed& parsed, QWidget *parent = nullptr);
 
 public slots:
-    void execute(QList<Variable> vars);
+    void execute(QList<Variable> vars, int blockNumber);
 
 private:
     Executor();
@@ -23,6 +23,11 @@ private:
     static Executor *instance;
     static Parsed lastParsed;
     void successfulExecution();
+    void executeBlock(QList<Variable> vars, int blockNumber);
+    QPair<bool, QString> executeCommand(QString command);
+    QString transformCommand(QString command);
+    QString getVarOrConstValue(QString name);
+    bool isVariable(QString name);
 };
 
 #endif // EXECUTOR_H

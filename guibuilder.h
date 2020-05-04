@@ -1,34 +1,34 @@
 #ifndef GUIBUILDER_H
 #define GUIBUILDER_H
 
-#include "variable.h"
+#include "parsed.h"
 
 #include <QObject>
 #include <QList>
 #include <QWidget>
+#include <QObject>
 
 class GUIBuilder : public QObject
 {
     Q_OBJECT
 
 public:
-    static QWidget* build(QList<Variable>& variables,
-                          const QString& moduleName,
+    static QWidget* build(Parsed& parsed,
                           QWidget *parent = nullptr);
     static GUIBuilder *getInstance();
 
 signals:
-    void startExecute(QList<Variable> vars);
+    void startExecute(QList<Variable> vars, int number);
+
+public slots:
+    void updateVariables();
+    void changeBlockNumber(int number);
 
 private:
     GUIBuilder();
     static QWidget *window;
     static GUIBuilder *instance;
     static QList<Variable> vars;
-
-
-private slots:
-    void updateVariables();
 };
 
 #endif // GUIBUILDER_H

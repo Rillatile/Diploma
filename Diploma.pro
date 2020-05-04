@@ -40,6 +40,9 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
+LIBS += -L/usr/lib/crypto++ -lcrypto++
+INCS += -I/usr/include/crypto++
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
